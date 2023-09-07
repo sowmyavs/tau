@@ -54,12 +54,12 @@ func (c *Client) Projects() ([]*Project, error) {
 func (p *Project) Repositories() (*RawRepoDataOuter, error) {
 	if p.RepoList == nil {
 		var response ProjectReturn
-		err := p.client.http.Get("/projects/"+p.Id, &response)
+		err := p.client.http.Get("/projects/"+p.Id, &response) // Make a HTTP get in the path to the route "/projects/"
 		if err != nil {
 			return nil, err
 		}
 
-		p.RepoList = response.Project.RepoList
+		p.RepoList = response.Project.RepoList 
 	}
 
 	return p.RepoList, nil
@@ -91,6 +91,6 @@ type deleteResponse struct {
 
 // Delete deletes the project and returns an error
 func (p *Project) Delete() (response deleteResponse, err error) {
-	err = p.client.http.Delete("/projects/"+p.Id, nil, &response)
-	return response, err
+	err = p.client.http.Delete("/projects/"+p.Id, nil, &response)  // Make a HTTP delete in the path to the route "/projects/" to remove response
+	return response, err // FIX: No check to see if there is an error
 }

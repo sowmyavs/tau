@@ -25,6 +25,7 @@ type basicMultiverse struct {
 
 func BasicMultiverse(name string) *basicMultiverse {
 	config := &common.Config{
+		// allocate memory for the map datastructure with string and service and return the reference of the datastructure memory.
 		Services: make(map[string]commonIface.ServiceConfig),
 	}
 
