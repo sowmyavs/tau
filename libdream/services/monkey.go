@@ -10,12 +10,14 @@ import (
 )
 
 func (u *Universe) CreateMonkeyService(config *commonIface.ServiceConfig) (peer.Node, error) {
+	// throws an error the  import of the monkey service is empty 
 	if registry.Registry.Monkey.Service == nil {
 		return nil, fmt.Errorf(`service is nil, have you imported _ "github.com/taubyte/tau/protocols/monkey"`)
 	}
 
 	monkey, err := registry.Registry.Monkey.Service(u.ctx, config)
-	if err != nil {
+	
+	if err != nil { 
 		return nil, err
 	}
 
